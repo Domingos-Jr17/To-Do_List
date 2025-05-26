@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { TaskInput } from './TaskInput';
 import { TaskTable } from './TaskTable';
-import type {Task } from './Types/Task';
-
-
+import type { Task } from './Types/Task';
 
 export function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -26,11 +24,17 @@ export function App() {
     ));
   };
 
-  return (
-    <div className="p-4 max-w-xl mx-auto">
-      <h1 className=" text-2xl font-bold mb-4">To-Do List</h1>
-      <TaskInput newTask={newTask} setNewTask={setNewTask} addTask={addTask} />
-      <TaskTable tasks={tasks} removeTask={removeTask} toggleTask={toggleTask} />
+ return (
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-2xl mx-auto bg-white p-6 rounded-2xl shadow-md">
+        <h1 className="text-3xl font-semibold text-blue-600 mb-6 text-center">
+          To-DO List
+        </h1>
+        <TaskInput newTask={newTask} setNewTask={setNewTask} addTask={addTask} />
+        {tasks.length > 0 && (
+          <TaskTable tasks={tasks} removeTask={removeTask} toggleTask={toggleTask} />
+        )}
+      </div>
     </div>
   );
 }
